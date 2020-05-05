@@ -165,7 +165,7 @@ static struct coretemp_data *coretemp_update_device(struct device *dev)
 	return data;
 }
 
-static int __devinit adjust_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
+static int adjust_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
 {
 	/* The 100C is default for both mobile and non mobile CPUs */
 
@@ -253,7 +253,7 @@ static int __devinit adjust_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *
 	return tjmax;
 }
 
-static int __devinit get_tjmax(struct cpuinfo_x86 *c, u32 id,
+static int get_tjmax(struct cpuinfo_x86 *c, u32 id,
 			       struct device *dev)
 {
 	/* The 100C is default for both mobile and non mobile CPUs */
@@ -285,7 +285,7 @@ static int __devinit get_tjmax(struct cpuinfo_x86 *c, u32 id,
 	return adjust_tjmax(c, id, dev);
 }
 
-static void __devinit get_ucode_rev_on_cpu(void *edx)
+static void get_ucode_rev_on_cpu(void *edx)
 {
 	u32 eax;
 
@@ -294,7 +294,7 @@ static void __devinit get_ucode_rev_on_cpu(void *edx)
 	rdmsr(MSR_IA32_UCODE_REV, eax, *(u32 *)edx);
 }
 
-static int __devinit coretemp_probe(struct platform_device *pdev)
+static int coretemp_probe(struct platform_device *pdev)
 {
 	struct coretemp_data *data;
 	struct cpuinfo_x86 *c = &cpu_data(pdev->id);
