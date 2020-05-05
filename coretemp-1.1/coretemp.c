@@ -178,7 +178,7 @@ static int adjust_tjmax(struct cpuinfo_x86 *c, u32 id, struct device *dev)
 
 	/* Early chips have no MSR for TjMax */
 
-	if ((c->x86_model == 0xf) && (c->x86_mask < 4)) {
+	if ((c->x86_model == 0xf) && (c->x86_stepping < 4)) {
 		usemsr_ee = 0;
 	}
 
@@ -327,7 +327,7 @@ static int coretemp_probe(struct platform_device *pdev)
 	   fixed for stepping D0 (6EC).
 	*/
 
-	if ((c->x86_model == 0xe) && (c->x86_mask < 0xc)) {
+	if ((c->x86_model == 0xe) && (c->x86_stepping < 0xc)) {
 		/* check for microcode update */
 		err = smp_call_function_single(data->id, get_ucode_rev_on_cpu,
 					       &edx, 1);
