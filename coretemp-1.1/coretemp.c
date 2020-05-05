@@ -394,7 +394,7 @@ exit:
 	return err;
 }
 
-static int __devexit coretemp_remove(struct platform_device *pdev)
+static int coretemp_remove(struct platform_device *pdev)
 {
 	struct coretemp_data *data = platform_get_drvdata(pdev);
 
@@ -412,7 +412,7 @@ static struct platform_driver coretemp_driver = {
 		.name = DRVNAME,
 	},
 	.probe = coretemp_probe,
-	.remove = __devexit_p(coretemp_remove),
+	.remove = coretemp_remove,
 };
 
 struct pdev_entry {
